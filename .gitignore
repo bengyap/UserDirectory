@@ -1,0 +1,45 @@
+# Environment files are intentionally tracked
+
+# Docker / local data
+UserDirectoryApi/data/
+database/
+docker-volume-*
+
+# Node artifacts
+**/node_modules/
+**/dist/
+**/dist-ssr/
+**/build/
+coverage/
+.nyc_output/
+
+# .NET artifacts
+**/bin/
+**/obj/
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# IDE and editor
+.vs/
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+*.user
+*.rsuser
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db

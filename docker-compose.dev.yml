@@ -1,0 +1,52 @@
+services:
+  # Backend API Service
+  api:
+    build:
+      context: ./UserDirectoryApi
+      dockerfile: Dockerfile.dev
+    container_name: user-directory-api-dev
+    ports:
+      - "5096:5096"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5096
+      - Auth0__Domain=${AUTH0_DOMAIN}
+      - Auth0__Audience=${AUTH0_AUDIENCE}
+      - Database__Path=/app/data/app.db
+    volumes:
+      - ./UserDirectoryApi:/src
+      - ./UserDirectoryApi/data:/app/data
+    networks:
+      - user-directory-network
+
+  # Frontend Service with Hot Reload
+  frontend:
+    build:
+      context: ./UserDirectoryApp
+      dockerfile: Dockerfile.dev
+    container_name: user-directory-frontend-dev
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_BASE=http://localhost:5096
+      - VITE_AUTH0_DOMAIN=${VITE_AUTH0_DOMAIN}
+      - VITE_AUTH0_CLIENT_ID=${VITE_AUTH0_CLIENT_ID}
+      - VITE_AUTH0_AUDIENCE=${VITE_AUTH0_AUDIENCE}
+    volumes:
+      - ./UserDirectoryApp/src:/app/src
+      - ./UserDirectoryApp/public:/app/public
+      - ./UserDirectoryApp/index.html:/app/index.html
+      - ./UserDirectoryApp/package.json:/app/package.json
+      - ./UserDirectoryApp/vite.config.ts:/app/vite.config.ts
+      - ./UserDirectoryApp/tsconfig.json:/app/tsconfig.json
+      - ./UserDirectoryApp/tsconfig.app.json:/app/tsconfig.app.json
+      - ./UserDirectoryApp/tsconfig.node.json:/app/tsconfig.node.json
+      - ./UserDirectoryApp/eslint.config.js:/app/eslint.config.js
+    depends_on:
+      - api
+    networks:
+      - user-directory-network
+
+networks:
+  user-directory-network:
+    driver: bridge
