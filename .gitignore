@@ -1,7 +1,6 @@
 # Environment files are intentionally tracked
 
 # Docker / local data
-UserDirectoryApi/data/
 database/
 docker-volume-*
 
