@@ -4,6 +4,8 @@
 database/
 docker-volume-*
 UserDirectoryApi/data/app.db
+UserDirectoryApi/data/app.db-wal
+UserDirectoryApi/data/app.db-shm
 
 # Node artifacts
 **/node_modules/
