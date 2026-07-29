@@ -6,10 +6,10 @@ Execution
 There are 2 ways to run this application as below,
 
 
-1. Run with docker by this command in the current folder, 
+1. Run with docker by this command in the root folder, 
 		docker-compose -f docker-compose.dev.yml up -d
 
-2. Run without docker by this command in the current folder, 
+2. Run without docker by this command in the root folder, 
 		.\run-local.bat
 		
 		
@@ -118,6 +118,9 @@ Docker
 2. Back end container hosting the .NET web api. Port Number is 5096
 
 Front end container access the back end api via `http://api:5096` through the internal bridge network
+
+To stop/remove containers, please run this command in the root folder,
+    docker compose -f docker-compose.dev.yml down
 
 ------------------------------------------------------------------------------------
 OTHERS
