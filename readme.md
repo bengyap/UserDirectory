@@ -14,7 +14,7 @@ There are 2 ways to run this application as below,
 		
 		
 		
-After either way of above is run, open browser and navigate to http://localhost:5173/
+After either way of above is run successfully, open browser and navigate to http://localhost:5173/
 
 
 The application is protected with Auth0 so login is required. You can sign up a new account when you are directed to Auth0 login page.
@@ -107,12 +107,24 @@ UserDirectoryApi/
     UsersControllerTests.cs          # Backend unit tests
     UserDirectoryApi.Tests.csproj    # Test project file
 	
-	
+
+------------------------------------------------------------------------------------
+Docker
+------------------------------------------------------------------------------------
+
+2 containers would be running as below
+
+1. Front end container hosting the React webapp. Port Number is 5173
+2. Back end container hosting the .NET web api. Port Number is 5096
+
+Front end container access the back end api via `http://api:5096` through the internal bridge network
+
 ------------------------------------------------------------------------------------
 OTHERS
 ------------------------------------------------------------------------------------
 
-Application is developed with the assistant of Github Copilot
+1. Application is developed with the assistant of Github Copilot
+2. Usually env file is not commited to the repo, however for the convenience of code reviewers to run this repo locally, env files are committed
 	
 
 
