@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using UserDirectoryApi.Data;
+using UserDirectoryApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ if (!string.IsNullOrWhiteSpace(dbDirectory))
 var connectionString = $"Data Source={dbPath};Mode=ReadWriteCreate;Cache=Shared;Foreign Keys=True;Default Timeout=5000";
 builder.Services.AddDbContext<UserDirectoryDbContext>(options =>
     options.UseSqlite(connectionString));
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddCors(options =>
 {

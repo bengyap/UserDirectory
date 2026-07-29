@@ -50,15 +50,7 @@ function ListUsersPage({ toast, onToastShown }: ListUsersPageProps) {
       return
     }
 
-    onToastShown()
-  }, [toast, onToastShown])
-
-  useEffect(() => {
-    if (!toast) {
-      return
-    }
-
-    const timer = window.setTimeout(() => onToastShown(), 2500)
+    const timer = window.setTimeout(() => onToastShown(), 3000)
     return () => window.clearTimeout(timer)
   }, [toast, onToastShown])
 

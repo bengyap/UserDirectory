@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using UserDirectoryApi.Controllers;
 using UserDirectoryApi.Data;
 using UserDirectoryApi.Models;
+using UserDirectoryApi.Services;
 using NUnit.Framework;
 
 namespace UserDirectoryApi.Tests;
@@ -28,7 +29,8 @@ public class UsersControllerTests
         );
         await context.SaveChangesAsync();
 
-        var controller = new UsersController(context);
+        var service = new UserService(context);
+        var controller = new UsersController(service);
 
         var result = await controller.GetUsers();
 
@@ -41,7 +43,8 @@ public class UsersControllerTests
     public async Task GetUser_ReturnsNotFound_WhenMissing()
     {
         await using var context = CreateContext(nameof(GetUser_ReturnsNotFound_WhenMissing));
-        var controller = new UsersController(context);
+        var service = new UserService(context);
+        var controller = new UsersController(service);
 
         var result = await controller.GetUser(404);
 
@@ -52,7 +55,8 @@ public class UsersControllerTests
     public async Task CreateUser_ReturnsCreatedAtAction_WithNewUser()
     {
         await using var context = CreateContext(nameof(CreateUser_ReturnsCreatedAtAction_WithNewUser));
-        var controller = new UsersController(context);
+        var service = new UserService(context);
+        var controller = new UsersController(service);
         var input = new User
         {
             Name = "Chris",
@@ -78,7 +82,8 @@ public class UsersControllerTests
     public async Task UpdateUser_ReturnsBadRequest_WhenRouteIdDiffersFromPayload()
     {
         await using var context = CreateContext(nameof(UpdateUser_ReturnsBadRequest_WhenRouteIdDiffersFromPayload));
-        var controller = new UsersController(context);
+        var service = new UserService(context);
+        var controller = new UsersController(service);
 
         var result = await controller.UpdateUser(1, new User
         {
@@ -113,7 +118,8 @@ public class UsersControllerTests
         await using var context = CreateContext(databaseName);
         var existingId = await context.Users.Select(user => user.Id).SingleAsync();
 
-        var controller = new UsersController(context);
+        var service = new UserService(context);
+        var controller = new UsersController(service);
 
         var result = await controller.UpdateUser(existingId, new User
         {
@@ -135,7 +141,8 @@ public class UsersControllerTests
     public async Task DeleteUser_ReturnsNotFound_WhenUserDoesNotExist()
     {
         await using var context = CreateContext(nameof(DeleteUser_ReturnsNotFound_WhenUserDoesNotExist));
-        var controller = new UsersController(context);
+        var service = new UserService(context);
+        var controller = new UsersController(service);
 
         var result = await controller.DeleteUser(999);
 
@@ -157,7 +164,8 @@ public class UsersControllerTests
         context.Users.Add(existing);
         await context.SaveChangesAsync();
 
-        var controller = new UsersController(context);
+        var service = new UserService(context);
+        var controller = new UsersController(service);
 
         var result = await controller.DeleteUser(existing.Id);
 

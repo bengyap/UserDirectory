@@ -1,3 +1,7 @@
+------------------------------------------------------------------------------------
+Project Overview
+------------------------------------------------------------------------------------
+This project is a small full-stack user directory app built with React and TypeScript on the front end and .NET 8  Web API with SQLite on the back end. Users can sign in through Auth0, view a list of users, and add new users through a simple web interface. The app is container-friendly and can be run locally or with Docker.
 
 ------------------------------------------------------------------------------------
 Execution
@@ -68,7 +72,7 @@ UserDirectoryApp/
     api.test.ts              # Unit tests for API helper
     LogoutButton.test.tsx    # Unit tests for Logout button
 
-
+The React app is structured as a small, page-based SPA with clear separation of concerns: App.tsx manages overall view state, the pages folder holds feature-specific UI for adding and listing users, api.ts centralizes backend communication, and main.tsx initializes the app and wires up the Auth0 provider. This keeps the code simple, easier to maintain, and easier to extend as the app grows.
 
 2. UserDirectoryApi
 
@@ -96,6 +100,9 @@ UserDirectoryApi/
   Data/
     UserDirectoryDbContext.cs        # EF Core DbContext
     DbInitializer.cs                 # Optional seed/init logic
+    
+  Services/
+    UserService.cs                   # Operation on Users
 
   Migrations/
     ...                              # EF Core migration files
@@ -107,6 +114,10 @@ UserDirectoryApi/
     UsersControllerTests.cs          # Backend unit tests
     UserDirectoryApi.Tests.csproj    # Test project file
 	
+
+With the structure above, there is clear separation amongst the HTTP layer (UsersController.cs),  domain entity (User.cs), domain logic (UserService.cs) persistence concerns (UserDirectoryDbContext.cs). 
+
+
 
 ------------------------------------------------------------------------------------
 Docker
