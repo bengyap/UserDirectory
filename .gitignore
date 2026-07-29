@@ -3,6 +3,7 @@
 # Docker / local data
 database/
 docker-volume-*
+UserDirectoryApi/data/app.db
 
 # Node artifacts
 **/node_modules/
