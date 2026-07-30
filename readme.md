@@ -47,8 +47,7 @@ Built with:
 - Vite
 - Auth0 (login/logout)
 
-## Folder Structure
-
+Folder Struture
 UserDirectoryApp/
   src/
     main.tsx                 # App entry point + Auth0Provider setup
@@ -83,8 +82,7 @@ Built with:
 - Entity Framework Core + SQLite
 - Auth0 JWT authentication
 
-## Folder Structure
-
+Folder Struture
 UserDirectoryApi/
   Program.cs                         # App setup (services, auth, middleware, DB)
   appsettings.json                   # Main configuration (Auth0, DB path)
