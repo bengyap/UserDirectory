@@ -126,7 +126,7 @@ Docker
 1. Front end container hosting the React webapp. Port Number is 5173
 2. Back end container hosting the .NET web api. Port Number is 5096
 
-Front end container access the back end api via `http://api:5096` through the internal bridge network
+Front end container accesses the back end api via `http://api:5096` through the internal bridge network
 
 To stop/remove containers, please run this command in the root folder,
     docker compose -f docker-compose.dev.yml down
